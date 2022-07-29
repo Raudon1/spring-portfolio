@@ -19,7 +19,7 @@ public class Catalogue {
     @GeneratedValue(strategy = AUTO)
     private Long id;
     private String name;
-    private int duration;
+    private java.sql.Date duration;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Category> categories = new ArrayList<>();
 }

@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -21,6 +24,15 @@ public class PortfolioApplication {
 	PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
+	private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+	private java.sql.Date parseDate(String date) {
+		try {
+			return new Date(DATE_FORMAT.parse(date).getTime());
+		} catch (ParseException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 
 	@Bean
 	CommandLineRunner run(UserService userService, ShopService shopService, DeliveryManService deliveryManService, CatalogueService catalogueService, ClientService clientService, CategoryService categoryService, ProductsService productsService){
@@ -31,7 +43,7 @@ public class PortfolioApplication {
 			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 			shopService.saveShop(new Shop(null,"test1","test1","test1",new ArrayList<Client>(), new ArrayList<Catalogue>(), new ArrayList<DeliveryMan>()));
 			deliveryManService.saveDelivery(new DeliveryMan(null, "testDeliver","testDeliver","45456")); //,new ArrayList<Order>()
-			catalogueService.saveCatalogue(new Catalogue(null,"testCatalogue",15,new ArrayList<>()));
+			catalogueService.saveCatalogue(new Catalogue(null,"testCatalogue",parseDate("2022-09-29"),new ArrayList<>()));
 			clientService.saveClient(new Client(null, "testClient","sad","12","as@s")); //,new ArrayList<Order>()
 			categoryService.saveCategory(new Category(null,"testCategory",new ArrayList<>()));
 			productsService.saveProducts(new Products(null,"testProduct","testBrand",4f,4f));
