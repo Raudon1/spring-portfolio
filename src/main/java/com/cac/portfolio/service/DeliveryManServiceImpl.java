@@ -1,6 +1,8 @@
 package com.cac.portfolio.service;
 
+import com.cac.portfolio.domain.CustomerOrder;
 import com.cac.portfolio.domain.DeliveryMan;
+import com.cac.portfolio.repo.CustomerOrderRepo;
 import com.cac.portfolio.repo.DeliveryMRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,7 @@ import java.util.List;
 @Slf4j
 public class DeliveryManServiceImpl implements DeliveryManService{
     private final DeliveryMRepo deliveryMRepo;
+    private final CustomerOrderRepo customerOrderRepo;
 
     @Override
     public DeliveryMan saveDelivery(DeliveryMan deliveryMan) {
@@ -26,6 +29,14 @@ public class DeliveryManServiceImpl implements DeliveryManService{
     public DeliveryMan getDelivery(String deliveryName) {
         log.info("Fetching delivering man {}", deliveryName);
         return deliveryMRepo.findByName(deliveryName);
+    }
+
+    @Override
+    public void addOrderToDeli(String orderNumber, String deliverName) {
+        log.info("Adding order number {} to deliveryMan {}", orderNumber, deliverName);
+        DeliveryMan deliveryMan = deliveryMRepo.findByName(deliverName);
+        CustomerOrder customerOrder = customerOrderRepo.findByOrderNumber(orderNumber);
+        deliveryMan.getCustomerOrders().add(customerOrder);
     }
 
     @Override

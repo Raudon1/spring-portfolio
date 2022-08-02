@@ -2,6 +2,7 @@ package com.cac.portfolio.api;
 
 import com.cac.portfolio.domain.Client;
 import com.cac.portfolio.service.ClientService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,16 @@ public class ClientResource {
         return ResponseEntity.created(null).body(clientService.saveClient(client));
     }
 
+    @PostMapping("/role/adddordertoclient")
+    public ResponseEntity<?> addOrderToClient(@RequestBody OrderToClientForm form) {
+        clientService.addOrderToClient(form.getClientName(),form.getOrderNumber());
+        return ResponseEntity.ok().build();
+    }
+
+    @Data
+    class OrderToClientForm {
+        private String clientName;
+        private String orderNumber;
+    }
 }
 

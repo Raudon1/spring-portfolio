@@ -2,6 +2,7 @@ package com.cac.portfolio.api;
 
 import com.cac.portfolio.domain.DeliveryMan;
 import com.cac.portfolio.service.DeliveryManService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +28,15 @@ public class DeliveryMenResource {
         return ResponseEntity.created(null).body(deliveryManService.saveDelivery(deliveryMan));
     }
 
+    @PostMapping("/role/adddordertodeli")
+    public ResponseEntity<?> addDeliverToShop(@RequestBody OrderToDeliveryForm form) {
+        deliveryManService.addOrderToDeli(form.getDeliverName(),form.getOrderNumber());
+        return ResponseEntity.ok().build();
+    }
+
+    @Data
+    class OrderToDeliveryForm {
+        private String deliverName;
+        private String orderNumber;
+    }
 }
