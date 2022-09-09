@@ -26,11 +26,11 @@ public class CatalogueServiceImpl implements CatalogueService{
     }
 
     @Override
-    public void addCategoryToCatalogue(String categoryName, String catalogueName) {
+    public Boolean addCategoryToCatalogue(String categoryName, String catalogueName) {
         log.info("Adding category {} to catalogue {}", categoryName, catalogueName );
         Catalogue catalogue = catalogueRepo.findByName(catalogueName);
         Category category = categoryRepo.findByName(categoryName);
-        catalogue.getCategories().add(category);
+        return catalogue.getCategories().add(category);
     }
 
     @Override

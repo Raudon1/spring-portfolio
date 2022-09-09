@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CatalogueService {
     Catalogue saveCatalogue(Catalogue catalogue);
-    void addCategoryToCatalogue (String categoryName, String catalogueName);
+    Boolean addCategoryToCatalogue (String categoryName, String catalogueName);
     Catalogue getCatalogue (String catalogueName);
     List<Catalogue> getCatalogues();
 }
