@@ -26,11 +26,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void addOrderToClient(String orderNumber, String clientName) {
+    public Boolean addOrderToClient(String orderNumber, String clientName) {
         log.info("Adding order number {} to client {}", orderNumber, clientName);
         Client client = clientRepo.findByName(clientName);
         CustomerOrder customerOrder = customerOrderRepo.findByOrderNumber(orderNumber);
-        client.getCustomerOrders().add(customerOrder);
+        return client.getCustomerOrders().add(customerOrder);
     }
 
     @Override
