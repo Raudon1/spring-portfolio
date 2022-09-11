@@ -46,6 +46,7 @@ class CatalogueServiceImplTest {
 
     @Test
     void test_saveCatalogue() {
+          //Given
           String expected = "Test1";
 
           Catalogue catalogue = new Catalogue();
@@ -53,17 +54,17 @@ class CatalogueServiceImplTest {
           catalogue.setName(expected);
           catalogue.setDuration(parseDate("2022-09-29"));
           catalogue.setCategories(new ArrayList<>());
-
           when(catalogueRepo.save(catalogue)).thenReturn(catalogue);
+          //When
           Catalogue obtainedCatalogue = catalogueServiceImpl.saveCatalogue(catalogue);
 
-
+          //Then
           Assertions.assertThat(obtainedCatalogue.getName()).isEqualTo(expected);
 
     }
 
     @Test
-    void addCategoryToCatalogue() {
+    void test_addCategoryToCatalogue() {
         //given
         Catalogue catalogue = Mockito.mock(Catalogue.class);
         Category category = new Category();
@@ -78,7 +79,7 @@ class CatalogueServiceImplTest {
     }
 
     @Test
-    void getCatalogue() {
+    void test_getCatalogue() {
         //BDD Behavior Driven Development
         //given dado que
         String expected = "testCatalogue";
@@ -93,7 +94,7 @@ class CatalogueServiceImplTest {
     }
 
     @Test
-    void getCatalogues() {
+    void test_getCatalogues() {
         //given
         List<Catalogue> catalogueList = new ArrayList<>();
         when(catalogueRepo.findAll()).thenReturn(catalogueList);
