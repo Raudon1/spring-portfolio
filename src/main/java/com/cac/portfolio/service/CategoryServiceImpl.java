@@ -26,11 +26,11 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void addProductToCategory(String productName, String categoryName) {
+    public Boolean addProductToCategory(String productName, String categoryName) {
         log.info("Adding product {} to category {}", productName, categoryName);
         Category category = categoryRepo.findByName(categoryName);
         Products products = productRepo.findByName(productName);
-        category.getProducts().add(products);
+        return category.getProducts().add(products);
     }
 
 
