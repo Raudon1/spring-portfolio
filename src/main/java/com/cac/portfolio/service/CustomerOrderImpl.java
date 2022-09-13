@@ -26,11 +26,11 @@ public class CustomerOrderImpl implements CustomerOrderService {
     }
 
     @Override
-    public void addProductsToOrder(String productsName, String orderNumber) {
+    public Boolean addProductsToOrder(String productsName, String orderNumber) {
         log.info("Adding products {} to order {}", productsName, orderNumber );
         CustomerOrder customerOrder = customerOrderRepo.findByOrderNumber(orderNumber);
         Products products = productRepo.findByName(productsName);
-        customerOrder.getProducts().add(products);
+       return customerOrder.getProducts().add(products);
     }
 
     @Override
