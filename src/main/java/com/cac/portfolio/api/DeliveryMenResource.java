@@ -19,7 +19,7 @@ public class DeliveryMenResource {
 
     @GetMapping("/deliveryman")
     public ResponseEntity<List<DeliveryMan>> getDeliveryMan() {
-        return ResponseEntity.ok().body(deliveryManService.getDelivery());
+        return ResponseEntity.ok().body(deliveryManService.getDeliveries());
     }
 
     @PostMapping("/deliveryman/save")

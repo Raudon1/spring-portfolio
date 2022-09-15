@@ -31,7 +31,7 @@ class CustomerOrderImplTest {
     private CustomerOrderImpl customerOrderImpl;
 
     @Test
-    void saveOrder() {
+    void test_saveOrder() {
         //Given
         String expected = "1111";
         CustomerOrder customerOrder = new CustomerOrder();
@@ -44,7 +44,7 @@ class CustomerOrderImplTest {
     }
 
     @Test
-    void addProductsToOrder() {
+    void test_addProductsToOrder() {
         //Given
         String customerOrderExpected = "1111";
         String productExpected = "TestP";
@@ -61,7 +61,7 @@ class CustomerOrderImplTest {
     }
 
     @Test
-    void getOrder() {
+    void test_getOrder() {
         //Given
         String expected = "1111";
         CustomerOrder customerOrder = new CustomerOrder();
@@ -74,7 +74,7 @@ class CustomerOrderImplTest {
     }
 
     @Test
-    void getOrders() {
+    void test_getOrders() {
         //Given
         List<CustomerOrder> customerOrderList = new ArrayList<>();
         when(customerOrderRepo.findAll()).thenReturn(customerOrderList);

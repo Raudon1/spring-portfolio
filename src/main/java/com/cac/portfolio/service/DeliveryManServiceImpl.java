@@ -26,21 +26,21 @@ public class DeliveryManServiceImpl implements DeliveryManService{
     }
 
     @Override
+    public Boolean addOrderToDeli(String orderNumber, String deliverName) {
+        log.info("Adding order number {} to deliveryMan {}", orderNumber, deliverName);
+        DeliveryMan deliveryMan = deliveryMRepo.findByName(deliverName);
+        CustomerOrder customerOrder = customerOrderRepo.findByOrderNumber(orderNumber);
+        return deliveryMan.getCustomerOrders().add(customerOrder);
+    }
+
+    @Override
     public DeliveryMan getDelivery(String deliveryName) {
         log.info("Fetching delivering man {}", deliveryName);
         return deliveryMRepo.findByName(deliveryName);
     }
 
     @Override
-    public void addOrderToDeli(String orderNumber, String deliverName) {
-        log.info("Adding order number {} to deliveryMan {}", orderNumber, deliverName);
-        DeliveryMan deliveryMan = deliveryMRepo.findByName(deliverName);
-        CustomerOrder customerOrder = customerOrderRepo.findByOrderNumber(orderNumber);
-        deliveryMan.getCustomerOrders().add(customerOrder);
-    }
-
-    @Override
-    public List<DeliveryMan> getDelivery() {
+    public List<DeliveryMan> getDeliveries() {
         log.info("Fetching all delivering men");
         return deliveryMRepo.findAll();
     }

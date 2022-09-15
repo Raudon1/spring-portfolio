@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DeliveryManService {
     DeliveryMan saveDelivery (DeliveryMan deliveryMan);
-    void addOrderToDeli (String orderNumber, String deliveryName);
-    DeliveryMan getDelivery (String deliveryName);
-    List<DeliveryMan> getDelivery();
+    Boolean addOrderToDeli (String orderNumber, String deliveryName);
+    DeliveryMan getDelivery(String deliveryName);
+    List<DeliveryMan> getDeliveries();
 }
