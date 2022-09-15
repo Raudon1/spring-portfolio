@@ -24,7 +24,7 @@ public class ProductsServiceImpl implements ProductsService{
     }
 
     @Override
-    public Products getProducts(String productName) {
+    public Products getProduct(String productName) {
         log.info("Fetching products {}", productName);
         return productRepo.findByName(productName);
     }
