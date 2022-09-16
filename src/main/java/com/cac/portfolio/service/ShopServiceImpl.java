@@ -31,27 +31,27 @@ public class ShopServiceImpl implements ShopService {
         return shopRepo.save(shop);
     }
     @Override
-    public void addClientToShop(String clientName, String shopName) {
+    public Boolean addClientToShop(String clientName, String shopName) {
         log.info("Adding client {} to shop {}", clientName, shopName);
         Shop shop = shopRepo.findByName(shopName);
         Client client = clientRepo.findByName(clientName);
-        shop.getClients().add(client);
+        return shop.getClients().add(client);
     }
 
     @Override
-    public void addDeliverMenToShop(String deliverName, String shopName) {
+    public Boolean addDeliverMenToShop(String deliverName, String shopName) {
         log.info("Adding client {} to shop {}", deliverName, shopName);
         Shop shop = shopRepo.findByName(shopName);
         DeliveryMan deliveryMan = deliveryMRepo.findByName(deliverName);
-        shop.getDeliveryMEN().add(deliveryMan);
+        return shop.getDeliveryMEN().add(deliveryMan);
     }
 
     @Override
-    public void addCatalogueToShop(String catalogueName, String shopName) {
+    public Boolean addCatalogueToShop(String catalogueName, String shopName) {
         log.info("Adding client {} to shop {}", catalogueName, shopName);
         Shop shop = shopRepo.findByName(shopName);
         Catalogue catalogue = catalogueRepo.findByName(catalogueName);
-        shop.getCatalogues().add(catalogue);
+        return shop.getCatalogues().add(catalogue);
     }
 
     @Override

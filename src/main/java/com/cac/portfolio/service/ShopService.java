@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ShopService {
     Shop saveShop (Shop shop);
-    void addClientToShop (String clientName, String shopName);
-    void addDeliverMenToShop (String deliverName, String shopName);
-    void addCatalogueToShop (String catalogueName, String shopName);
+    Boolean addClientToShop (String clientName, String shopName);
+    Boolean addDeliverMenToShop (String deliverName, String shopName);
+    Boolean addCatalogueToShop (String catalogueName, String shopName);
     Shop getShop (String shopName);
     List<Shop> getShops();
 }
